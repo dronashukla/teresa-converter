@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <!-- Space background layer using the uploaded image -->
+    <!-- Space background layer -->
     <div class="space-background"></div>
     
     <!-- Animated cosmic elements -->
@@ -24,55 +24,58 @@
     <main>
         <div class="converter">
             <input type="number" id="inputValue" placeholder="Enter value">
-            <select id="inputUnit">
-                <option value="">Select input unit</option>
-                <option value="meters">Meters</option>
-                <option value="km">Kilometers</option>
-                <option value="miles">Miles</option>
-                <option value="ft">Feet</option>
-                <option value="inches">Inches</option>
-                <option value="cm">Centimeters</option>
-                <option value="kg">Kilograms</option>
-                <option value="lbs">Pounds</option>
-                <option value="USD">USD</option>
-                <option value="EUR">EUR</option>
-                <option value="GBP">GBP</option>
-                <option value="JPY">JPY</option>
-                <option value="AUD">AUD</option>
-                <option value="CAD">CAD</option>
-                <option value="CHF">CHF</option>
-                <option value="CNY">CNY</option>
-                <option value="INR">INR</option>
-                <option value="BRL">BRL</option>
-            </select>
-            <span>to</span>
-            <select id="outputUnit">
-                <option value="">Select output unit</option>
-                <option value="meters">Meters</option>
-                <option value="km">Kilometers</option>
-                <option value="miles">Miles</option>
-                <option value="ft">Feet</option>
-                <option value="inches">Inches</option>
-                <option value="cm">Centimeters</option>
-                <option value="kg">Kilograms</option>
-                <option value="lbs">Pounds</option>
-                <option value="USD">USD</option>
-                <option value="EUR">EUR</option>
-                <option value="GBP">GBP</option>
-                <option value="JPY">JPY</option>
-                <option value="AUD">AUD</option>
-                <option value="CAD">CAD</option>
-                <option value="CHF">CHF</option>
-                <option value="CNY">CNY</option>
-                <option value="INR">INR</option>
-                <option value="BRL">BRL</option>
-            </select>
+            <button id="swapUnitsBtn">Swap Units</button>
+            <div class="unit-selection">
+                <select id="inputUnit">
+                    <option value="">Select input unit</option>
+                    <option value="meters">Meters</option>
+                    <option value="km">Kilometers</option>
+                    <option value="miles">Miles</option>
+                    <option value="ft">Feet</option>
+                    <option value="inches">Inches</option>
+                    <option value="cm">Centimeters</option>
+                    <option value="kg">Kilograms</option>
+                    <option value="lbs">Pounds</option>
+                    <option value="USD">USD</option>
+                    <option value="EUR">EUR</option>
+                    <option value="GBP">GBP</option>
+                    <option value="JPY">JPY</option>
+                    <option value="AUD">AUD</option>
+                    <option value="CAD">CAD</option>
+                    <option value="CHF">CHF</option>
+                    <option value="CNY">CNY</option>
+                    <option value="INR">INR</option>
+                    <option value="BRL">BRL</option>
+                </select>
+                <span>to</span>
+                <select id="outputUnit">
+                    <option value="">Select output unit</option>
+                    <option value="meters">Meters</option>
+                    <option value="km">Kilometers</option>
+                    <option value="miles">Miles</option>
+                    <option value="ft">Feet</option>
+                    <option value="inches">Inches</option>
+                    <option value="cm">Centimeters</option>
+                    <option value="kg">Kilograms</option>
+                    <option value="lbs">Pounds</option>
+                    <option value="USD">USD</option>
+                    <option value="EUR">EUR</option>
+                    <option value="GBP">GBP</option>
+                    <option value="JPY">JPY</option>
+                    <option value="AUD">AUD</option>
+                    <option value="CAD">CAD</option>
+                    <option value="CHF">CHF</option>
+                    <option value="CNY">CNY</option>
+                    <option value="INR">INR</option>
+                    <option value="BRL">BRL</option>
+                </select>
+            </div>
             <button id="convertBtn">Convert</button>
             <div id="result"></div>
         </div>
     </main>
     <footer>
-        <p><strong>How to use:</strong> Enter a value, select the input unit and the output unit, then click "Convert" to see the result. If units are not compatible, it will display "Units not compatible."</p>
+        <p><strong>How to use:</strong> Enter a value, select the input unit and the output unit, then click "Convert" to see the result. Click "Swap Units" to interchange the selected units. If units are not compatible, it will display "Units not compatible."</p>
     </footer>
     <script src="script.js"></script>
 </body>
