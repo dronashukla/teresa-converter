@@ -1,0 +1,62 @@
+body {
+    font-family: Arial, sans-serif; /* Clean font */
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4; /* Light gray background */
+    color: #333; /* Dark gray text */
+}
+
+header {
+    background-color: #007bff; /* Blue header */
+    color: white;
+    padding: 20px;
+    text-align: center;
+}
+
+main {
+    display: flex;
+    justify-content: center; /* Centers the converter */
+    align-items: center;
+    height: 80vh; /* Takes up most of the screen */
+}
+
+.converter {
+    background-color: white; /* White box for the converter */
+    padding: 20px;
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0 0 10px rgba(0,0,0,0.1); /* Subtle shadow */
+    text-align: center;
+}
+
+input, select, button {
+    margin: 10px; /* Space between elements */
+    padding: 10px; /* Padding inside elements */
+    font-size: 16px; /* Readable text size */
+}
+
+button {
+    background-color: #007bff; /* Blue button */
+    color: white;
+    border: none;
+    cursor: pointer; /* Hand icon on hover */
+}
+
+button:hover {
+    background-color: #0056b3; /* Darker blue when hovering */
+}
+
+#result {
+    margin-top: 20px; /* Space above the result */
+    font-size: 18px; /* Slightly bigger text */
+    font-weight: bold; /* Bold result */
+}
+
+footer {
+    text-align: center;
+    padding: 10px;
+    background-color: #007bff; /* Blue footer */
+    color: white;
+    position: fixed; /* Stays at the bottom */
+    bottom: 0;
+    width: 100%;
+}
