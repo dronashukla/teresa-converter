@@ -1,16 +1,17 @@
-// Conversion rates relative to a base unit
+// Conversion rates: for distance and weight, number of units per base unit
+// For currency, rate from base (USD) to the currency
 const conversionRates = {
     // Distance (base: meters)
     meters: 1,
-    km: 1000,
-    miles: 1609.34,
-    ft: 0.3048,
-    inches: 0.0254,
-    cm: 0.01,
+    km: 0.001,          // 1 meter = 0.001 km
+    miles: 0.000621371, // 1 meter = 0.000621371 miles
+    ft: 3.28084,        // 1 meter = 3.28084 feet
+    inches: 39.3701,    // 1 meter = 39.3701 inches
+    cm: 100,            // 1 meter = 100 cm
     // Weight (base: kg)
     kg: 1,
-    lbs: 0.453592,
-    // Currency (base: USD) - approximate rates
+    lbs: 2.20462,       // 1 kg = 2.20462 lbs
+    // Currency (base: USD)
     USD: 1,
     EUR: 0.85,
     GBP: 0.75,
@@ -62,7 +63,7 @@ function convert() {
     }
 
     // Convert to the base unit first, then to the output unit
-    const baseValue = inputValue / conversionRates[inputUnit]; // To base (e.g., meters or kg or USD)
+    const baseValue = inputValue / conversionRates[inputUnit]; // To base
     const outputValue = baseValue * conversionRates[outputUnit]; // To output unit
 
     // Show the result with 4 decimal places for precision
