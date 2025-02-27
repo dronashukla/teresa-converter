@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teresa - Unit Converter</title>
+    <link rel="stylesheet" href="styles.css"> <!-- Links to the style file -->
+</head>
+<body>
+    <header>
+        <h1>Teresa</h1> <!-- The website name at the top -->
+    </header>
+    <main>
+        <div class="converter">
+            <!-- Input box for the number -->
+            <input type="number" id="inputValue" placeholder="Enter value">
+            <!-- Dropdown for the starting unit -->
+            <select id="inputUnit">
+                <option value="">Select input unit</option>
+                <!-- Distance options -->
+                <option value="meters">Meters</option>
+                <option value="km">Kilometers</option>
+                <option value="miles">Miles</option>
+                <option value="ft">Feet</option>
+                <option value="inches">Inches</option>
+                <option value="cm">Centimeters</option>
+                <!-- Weight options -->
+                <option value="kg">Kilograms</option>
+                <option value="lbs">Pounds</option>
+                <!-- Currency options -->
+                <option value="USD">USD</option>
+                <option value="EUR">EUR</option>
+                <option value="GBP">GBP</option>
+                <option value="JPY">JPY</option>
+                <option value="AUD">AUD</option>
+                <option value="CAD">CAD</option>
+                <option value="CHF">CHF</option>
+                <option value="CNY">CNY</option>
+                <option value="INR">INR</option>
+                <option value="BRL">BRL</option>
+            </select>
+            <span>to</span> <!-- A little "to" between dropdowns -->
+            <!-- Dropdown for the unit to convert to -->
+            <select id="outputUnit">
+                <option value="">Select output unit</option>
+                <option value="meters">Meters</option>
+                <option value="km">Kilometers</option>
+                <option value="miles">Miles</option>
+                <option value="ft">Feet</option>
+                <option value="inches">Inches</option>
+                <option value="cm">Centimeters</option>
+                <option value="kg">Kilograms</option>
+                <option value="lbs">Pounds</option>
+                <option value="USD">USD</option>
+                <option value="EUR">EUR</option>
+                <option value="GBP">GBP</option>
+                <option value="JPY">JPY</option>
+                <option value="AUD">AUD</option>
+                <option value="CAD">CAD</option>
+                <option value="CHF">CHF</option>
+                <option value="CNY">CNY</option>
+                <option value="INR">INR</option>
+                <option value="BRL">BRL</option>
+            </select>
+            <!-- Button to trigger the conversion -->
+            <button id="convertBtn">Convert</button>
+            <!-- Where the result shows up -->
+            <div id="result"></div>
+        </div>
+    </main>
+    <footer>
+        <!-- Instructions at the bottom -->
+        <p><strong>How to use:</strong> Enter a value, select the input unit and the output unit, then click "Convert" to see the result. If units are not compatible, it will display "Units not compatible."</p>
+    </footer>
+    <script src="script.js"></script> <!-- Links to the functionality file -->
+</body>
+</html>
