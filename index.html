@@ -8,23 +8,39 @@
 </head>
 <body>
     <header>
-        <h1>Teresa</h1>
+        <h1>Teresa - Unit Converter</h1>
     </header>
     <main>
         <div class="converter">
             <input type="number" id="inputValue" placeholder="Enter value">
             <select id="inputUnit">
                 <option value="">Select input unit</option>
-                <option value="celsius">Celsius</option>
-                <option value="fahrenheit">Fahrenheit</option>
-                <!-- Add more units as needed -->
+                <option value="kg">Kilograms (kg)</option>
+                <option value="lbs">Pounds (lbs)</option>
+                <option value="miles">Miles</option>
+                <option value="km">Kilometers (km)</option>
+                <option value="meters">Meters</option>
+                <option value="inches">Inches</option>
+                <option value="ft">Feet (ft)</option>
+                <option value="cm">Centimeters (cm)</option>
+                <option value="celsius">Celsius (°C)</option>
+                <option value="fahrenheit">Fahrenheit (°F)</option>
+                <option value="currency">Currency (Placeholder)</option>
             </select>
             <span>to</span>
             <select id="outputUnit">
                 <option value="">Select output unit</option>
-                <option value="celsius">Celsius</option>
-                <option value="fahrenheit">Fahrenheit</option>
-                <!-- Add more units as needed -->
+                <option value="kg">Kilograms (kg)</option>
+                <option value="lbs">Pounds (lbs)</option>
+                <option value="miles">Miles</option>
+                <option value="km">Kilometers (km)</option>
+                <option value="meters">Meters</option>
+                <option value="inches">Inches</option>
+                <option value="ft">Feet (ft)</option>
+                <option value="cm">Centimeters (cm)</option>
+                <option value="celsius">Celsius (°C)</option>
+                <option value="fahrenheit">Fahrenheit (°F)</option>
+                <option value="currency">Currency (Placeholder)</option>
             </select>
             <button id="convertBtn">Convert</button>
             <button id="swapBtn">Swap</button>
@@ -32,7 +48,7 @@
         </div>
     </main>
     <footer>
-        <p><strong>How to use:</strong> Enter a value, select the input unit (like Celsius) and the output unit (like Fahrenheit), then click "Convert" to see the result. If units are not compatible, it will display "Units not compatible." Temperature conversions supported!</p>
+        <p><strong>How to use:</strong> Enter a value, select the input and output units, then click "Convert" to see the result. Use "Swap" to switch units. If units are incompatible, it will display "Units not compatible."</p>
     </footer>
     <script src="script.js"></script>
 </body>
