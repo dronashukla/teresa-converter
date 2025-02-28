@@ -1,116 +1,67 @@
-/* Reset default margins and padding */
-* {
+body {
+    background-color: #000000; /* Black background */
+    color: #FFFFFF; /* White text */
+    font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
 }
 
-/* Space background styling */
-.space-background {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-image: url('space-background.jpg');
-    background-size: cover;
-    background-position: center;
-    z-index: -1;
-}
-
-/* Animated cosmic elements (assumed existing styles) */
-.star, .planet, .asteroid {
-    position: absolute;
-    animation: float 10s infinite ease-in-out;
-}
-.star1 { top: 10%; left: 20%; width: 5px; height: 5px; background: white; }
-.star2 { top: 50%; left: 70%; width: 4px; height: 4px; background: white; }
-.star3 { top: 80%; left: 40%; width: 6px; height: 6px; background: white; }
-.planet { top: 30%; left: 10%; width: 50px; height: 50px; background: #4CAF50; border-radius: 50%; }
-.asteroid1 { top: 60%; left: 80%; width: 20px; height: 20px; background: gray; }
-.asteroid2 { top: 20%; left: 60%; width: 15px; height: 15px; background: gray; }
-
-@keyframes float {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-20px); }
-}
-
-/* Header, main, and footer styling */
-header, footer {
-    background: rgba(0, 0, 0, 0.7);
-    color: white;
-    padding: 10px;
+header {
+    background-color: #000000; /* Black header */
+    color: #FFFFFF;
+    padding: 20px;
     text-align: center;
 }
+
 main {
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: calc(100vh - 120px);
+    height: 80vh;
 }
 
-/* Converter styling */
 .converter {
-    background: rgba(255, 255, 255, 0.8);
+    background-color: #000000; /* Black background for converter */
     padding: 20px;
     border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     text-align: center;
-    color: #333;
 }
 
-/* Larger input and dropdowns for clarity */
-input[type="number"], select {
-    width: 200px;
-    height: 40px;
-    font-size: 18px;
+input, select {
+    background-color: #333333; /* Dark gray background */
+    color: #FFFFFF; /* White text */
+    border: 1px solid #FFFFFF; /* White border */
     padding: 5px;
-    margin: 10px;
-    border: 1px solid #ccc;
     border-radius: 5px;
+    margin: 10px;
 }
 
-/* Swap button styling */
-#swapUnitsBtn {
-    background: linear-gradient(45deg, #1e3c72, #2a5298, #6b48ff);
-    color: white;
+button {
+    background-color: #800080; /* Purple button */
+    color: #FFFFFF;
     border: none;
     padding: 10px 20px;
-    font-size: 16px;
     border-radius: 5px;
     cursor: pointer;
     margin: 10px;
 }
-#swapUnitsBtn:hover {
-    background: linear-gradient(45deg, #6b48ff, #2a5298, #1e3c72);
+
+button:hover {
+    background-color: #A000A0; /* Lighter purple on hover */
 }
 
-/* Unit selection layout */
-.unit-selection {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 10px 0;
-}
-
-/* Convert button (assumed existing style updated) */
-#convertBtn {
-    background: linear-gradient(45deg, #1e3c72, #2a5298, #6b48ff);
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    font-size: 16px;
-    border-radius: 5px;
-    cursor: pointer;
-    margin: 10px;
-}
-#convertBtn:hover {
-    background: linear-gradient(45deg, #6b48ff, #2a5298, #1e3c72);
-}
-
-/* Result styling */
 #result {
-    font-size: 20px;
     margin-top: 20px;
-    color: #000;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+footer {
+    background-color: #333333; /* Dark gray footer */
+    color: #FFFFFF;
+    padding: 10px;
+    text-align: center;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
 }
