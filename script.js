@@ -1,4 +1,5 @@
-// List of currencies, including INR
+// Currencylayer API Setup
+const apiKey = '762e1edc7d1add0e3468d647367c3c3f'; // Your API key
 const currencies = ['USD', 'EUR', 'JPY', 'GBP', 'AUD', 'CAD', 'CHF', 'CNY', 'SEK', 'NZD', 'MXN', 'SGD', 'INR'];
 
 // Cached rates and last fetch time
@@ -11,17 +12,16 @@ async function fetchRates() {
     if (cachedRates && lastFetchTime && (Date.now() - lastFetchTime < CACHE_DURATION)) {
         return cachedRates;
     }
-    const apiKey = '762e1edc7d1add0e3468d647367c3c3f'; // Your API key
     const url = `https://api.currencylayer.com/live?access_key=${apiKey}&currencies=${currencies.join(',')}`;
     const response = await fetch(url);
     const data = await response.json();
-    console.log(data); // For debugging: check the API response in the browser console
+    // console.log(data); // Uncomment for debugging API response
     if (data.success) {
         cachedRates = data.quotes;
         lastFetchTime = Date.now();
         return cachedRates;
     } else {
-        throw new Error('Failed to fetch rates: ' + (data.error ? data.error.info : 'Unknown error'));
+        throw new Error('Failed to fetch rates');
     }
 }
 
@@ -80,17 +80,14 @@ function convert() {
         fetchRates().then(rates => {
             const rateKeyInput = 'USD' + inputUnit;
             const rateKeyOutput = 'USD' + outputUnit;
-
-            // Check if rates are available
-            if (!rates[rateKeyInput] || !rates[rateKeyOutput]) {
-                resultDiv.textContent = 'Currency rates not available.';
-                return;
-            }
-
             const rateInput = rates[rateKeyInput];
             const rateOutput = rates[rateKeyOutput];
-            const convertedValue = (inputValue / rateInput) * rateOutput;
-            resultDiv.textContent = `${inputValue} ${inputUnit} = ${convertedValue.toFixed(4)} ${outputUnit}`;
+            if (rateInput && rateOutput) {
+                const convertedValue = (inputValue / rateInput) * rateOutput;
+                resultDiv.textContent = `${inputValue} ${inputUnit} = ${convertedValue.toFixed(4)} ${outputUnit}`;
+            } else {
+                resultDiv.textContent = 'Currency rates not available.';
+            }
         }).catch(error => {
             resultDiv.textContent = 'Error fetching currency rates.';
             console.error(error);
