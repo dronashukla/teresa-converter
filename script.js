@@ -11,16 +11,17 @@ async function fetchRates() {
     if (cachedRates && lastFetchTime && (Date.now() - lastFetchTime < CACHE_DURATION)) {
         return cachedRates;
     }
-    const apiKey = '762e1edc7d1add0e3468d647367c3c3f'; // Replace with your own API key if needed
+    const apiKey = '762e1edc7d1add0e3468d647367c3c3f'; // Your API key
     const url = `https://api.currencylayer.com/live?access_key=${apiKey}&currencies=${currencies.join(',')}`;
     const response = await fetch(url);
     const data = await response.json();
+    console.log(data); // For debugging: check the API response in the browser console
     if (data.success) {
         cachedRates = data.quotes;
         lastFetchTime = Date.now();
         return cachedRates;
     } else {
-        throw new Error('Failed to fetch rates');
+        throw new Error('Failed to fetch rates: ' + (data.error ? data.error.info : 'Unknown error'));
     }
 }
 
