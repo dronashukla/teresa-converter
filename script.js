@@ -1,17 +1,17 @@
-// List of currencies
-const currencies = ['USD', 'EUR', 'JPY', 'GBP', 'AUD', 'CAD', 'CHF', 'CNY', 'SEK', 'NZD', 'MXN', 'SGD'];
+// List of currencies, including INR
+const currencies = ['USD', 'EUR', 'JPY', 'GBP', 'AUD', 'CAD', 'CHF', 'CNY', 'SEK', 'NZD', 'MXN', 'SGD', 'INR'];
 
 // Cached rates and last fetch time
 let cachedRates = null;
 let lastFetchTime = null;
 const CACHE_DURATION = 10 * 60 * 1000; // 10 minutes
 
-// Function to fetch real-time currency rates
+// Fetch real-time currency rates
 async function fetchRates() {
     if (cachedRates && lastFetchTime && (Date.now() - lastFetchTime < CACHE_DURATION)) {
         return cachedRates;
     }
-    const apiKey = '762e1edc7d1add0e3468d647367c3c3f'; // Your actual API key
+    const apiKey = '762e1edc7d1add0e3468d647367c3c3f'; // Replace with your own API key if needed
     const url = `https://api.currencylayer.com/live?access_key=${apiKey}&currencies=${currencies.join(',')}`;
     const response = await fetch(url);
     const data = await response.json();
@@ -77,12 +77,22 @@ function convert() {
 
     if (inputType === 'currency') {
         fetchRates().then(rates => {
-            const rateA = rates['USD' + inputUnit];
-            const rateB = rates['USD' + outputUnit];
-            const convertedValue = (inputValue / rateA) * rateB;
+            const rateKeyInput = 'USD' + inputUnit;
+            const rateKeyOutput = 'USD' + outputUnit;
+
+            // Check if rates are available
+            if (!rates[rateKeyInput] || !rates[rateKeyOutput]) {
+                resultDiv.textContent = 'Currency rates not available.';
+                return;
+            }
+
+            const rateInput = rates[rateKeyInput];
+            const rateOutput = rates[rateKeyOutput];
+            const convertedValue = (inputValue / rateInput) * rateOutput;
             resultDiv.textContent = `${inputValue} ${inputUnit} = ${convertedValue.toFixed(4)} ${outputUnit}`;
         }).catch(error => {
             resultDiv.textContent = 'Error fetching currency rates.';
+            console.error(error);
         });
     } else if (inputType === 'temperature') {
         let convertedValue;
