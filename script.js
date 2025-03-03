@@ -1,4 +1,30 @@
-// Conversion rates and functions
+// List of currencies
+const currencies = ['USD', 'EUR', 'JPY', 'GBP', 'AUD', 'CAD', 'CHF', 'CNY', 'SEK', 'NZD', 'MXN', 'SGD'];
+
+// Cached rates and last fetch time
+let cachedRates = null;
+let lastFetchTime = null;
+const CACHE_DURATION = 10 * 60 * 1000; // 10 minutes
+
+// Function to fetch real-time currency rates
+async function fetchRates() {
+    if (cachedRates && lastFetchTime && (Date.now() - lastFetchTime < CACHE_DURATION)) {
+        return cachedRates;
+    }
+    const apiKey = '762e1edc7d1add0e3468d647367c3c3f'; // Your actual API key
+    const url = `https://api.currencylayer.com/live?access_key=${apiKey}&currencies=${currencies.join(',')}`;
+    const response = await fetch(url);
+    const data = await response.json();
+    if (data.success) {
+        cachedRates = data.quotes;
+        lastFetchTime = Date.now();
+        return cachedRates;
+    } else {
+        throw new Error('Failed to fetch rates');
+    }
+}
+
+// Conversion rates for other units
 const conversions = {
     weight: {
         kg: 1,
@@ -15,20 +41,15 @@ const conversions = {
     temperature: {
         celsius: (value, to) => to === 'fahrenheit' ? (value * 9/5) + 32 : value,
         fahrenheit: (value, to) => to === 'celsius' ? (value - 32) * 5/9 : value
-    },
-    currency: {
-        // Placeholder for currency (expandable with real rates or an API)
-        usd: 1,
-        eur: 0.85 // Example rate
     }
 };
 
-// Determine the type of unit (weight, distance, temperature, etc.)
+// Determine the type of unit
 function getUnitType(unit) {
+    if (currencies.includes(unit)) return 'currency';
     if (['kg', 'lbs'].includes(unit)) return 'weight';
     if (['meters', 'km', 'miles', 'inches', 'ft', 'cm'].includes(unit)) return 'distance';
     if (['celsius', 'fahrenheit'].includes(unit)) return 'temperature';
-    if (['usd', 'eur'].includes(unit)) return 'currency'; // Placeholder
     return null;
 }
 
@@ -54,17 +75,30 @@ function convert() {
         return;
     }
 
-    let convertedValue;
-    if (inputType === 'temperature') {
-        // Special handling for temperature conversions
-        convertedValue = conversions.temperature[inputUnit](inputValue, outputUnit);
+    if (inputType === 'currency') {
+        fetchRates().then(rates => {
+            const rateA = rates['USD' + inputUnit];
+            const rateB = rates['USD' + outputUnit];
+            const convertedValue = (inputValue / rateA) * rateB;
+            resultDiv.textContent = `${inputValue} ${inputUnit} = ${convertedValue.toFixed(4)} ${outputUnit}`;
+        }).catch(error => {
+            resultDiv.textContent = 'Error fetching currency rates.';
+        });
+    } else if (inputType === 'temperature') {
+        let convertedValue;
+        if (inputUnit === 'celsius' && outputUnit === 'fahrenheit') {
+            convertedValue = (inputValue * 9/5) + 32;
+        } else if (inputUnit === 'fahrenheit' && outputUnit === 'celsius') {
+            convertedValue = (inputValue - 32) * 5/9;
+        } else {
+            convertedValue = inputValue; // Same unit
+        }
+        resultDiv.textContent = `${inputValue} ${inputUnit} = ${convertedValue.toFixed(2)} ${outputUnit}`;
     } else {
-        // Convert to base unit (e.g., meters for distance) then to target unit
         const baseValue = inputValue / conversions[inputType][inputUnit];
-        convertedValue = baseValue * conversions[inputType][outputUnit];
+        const convertedValue = baseValue * conversions[inputType][outputUnit];
+        resultDiv.textContent = `${inputValue} ${inputUnit} = ${convertedValue.toFixed(4)} ${outputUnit}`;
     }
-
-    resultDiv.textContent = `${inputValue} ${inputUnit} = ${convertedValue.toFixed(4)} ${outputUnit}`;
 }
 
 // Swap the input and output units
