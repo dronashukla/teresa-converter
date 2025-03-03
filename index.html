@@ -15,32 +15,70 @@
             <input type="number" id="inputValue" placeholder="Enter value">
             <select id="inputUnit">
                 <option value="">Select input unit</option>
-                <option value="kg">Kilograms (kg)</option>
-                <option value="lbs">Pounds (lbs)</option>
-                <option value="miles">Miles</option>
-                <option value="km">Kilometers (km)</option>
-                <option value="meters">Meters</option>
-                <option value="inches">Inches</option>
-                <option value="ft">Feet (ft)</option>
-                <option value="cm">Centimeters (cm)</option>
-                <option value="celsius">Celsius (°C)</option>
-                <option value="fahrenheit">Fahrenheit (°F)</option>
-                <option value="currency">Currency (Placeholder)</option>
+                <optgroup label="Weight">
+                    <option value="kg">Kilograms (kg)</option>
+                    <option value="lbs">Pounds (lbs)</option>
+                </optgroup>
+                <optgroup label="Distance">
+                    <option value="meters">Meters</option>
+                    <option value="km">Kilometers (km)</option>
+                    <option value="miles">Miles</option>
+                    <option value="inches">Inches</option>
+                    <option value="ft">Feet (ft)</option>
+                    <option value="cm">Centimeters (cm)</option>
+                </optgroup>
+                <optgroup label="Temperature">
+                    <option value="celsius">Celsius (°C)</option>
+                    <option value="fahrenheit">Fahrenheit (°F)</option>
+                </optgroup>
+                <optgroup label="Currency">
+                    <option value="USD">US Dollar (USD)</option>
+                    <option value="EUR">Euro (EUR)</option>
+                    <option value="JPY">Japanese Yen (JPY)</option>
+                    <option value="GBP">British Pound (GBP)</option>
+                    <option value="AUD">Australian Dollar (AUD)</option>
+                    <option value="CAD">Canadian Dollar (CAD)</option>
+                    <option value="CHF">Swiss Franc (CHF)</option>
+                    <option value="CNY">Chinese Yuan (CNY)</option>
+                    <option value="SEK">Swedish Krona (SEK)</option>
+                    <option value="NZD">New Zealand Dollar (NZD)</option>
+                    <option value="MXN">Mexican Peso (MXN)</option>
+                    <option value="SGD">Singapore Dollar (SGD)</option>
+                </optgroup>
             </select>
             <span>to</span>
             <select id="outputUnit">
                 <option value="">Select output unit</option>
-                <option value="kg">Kilograms (kg)</option>
-                <option value="lbs">Pounds (lbs)</option>
-                <option value="miles">Miles</option>
-                <option value="km">Kilometers (km)</option>
-                <option value="meters">Meters</option>
-                <option value="inches">Inches</option>
-                <option value="ft">Feet (ft)</option>
-                <option value="cm">Centimeters (cm)</option>
-                <option value="celsius">Celsius (°C)</option>
-                <option value="fahrenheit">Fahrenheit (°F)</option>
-                <option value="currency">Currency (Placeholder)</option>
+                <optgroup label="Weight">
+                    <option value="kg">Kilograms (kg)</option>
+                    <option value="lbs">Pounds (lbs)</option>
+                </optgroup>
+                <optgroup label="Distance">
+                    <option value="meters">Meters</option>
+                    <option value="km">Kilometers (km)</option>
+                    <option value="miles">Miles</option>
+                    <option value="inches">Inches</option>
+                    <option value="ft">Feet (ft)</option>
+                    <option value="cm">Centimeters (cm)</option>
+                </optgroup>
+                <optgroup label="Temperature">
+                    <option value="celsius">Celsius (°C)</option>
+                    <option value="fahrenheit">Fahrenheit (°F)</option>
+                </optgroup>
+                <optgroup label="Currency">
+                    <option value="USD">US Dollar (USD)</option>
+                    <option value="EUR">Euro (EUR)</option>
+                    <option value="JPY">Japanese Yen (JPY)</option>
+                    <option value="GBP">British Pound (GBP)</option>
+                    <option value="AUD">Australian Dollar (AUD)</option>
+                    <option value="CAD">Canadian Dollar (CAD)</option>
+                    <option value="CHF">Swiss Franc (CHF)</option>
+                    <option value="CNY">Chinese Yuan (CNY)</option>
+                    <option value="SEK">Swedish Krona (SEK)</option>
+                    <option value="NZD">New Zealand Dollar (NZD)</option>
+                    <option value="MXN">Mexican Peso (MXN)</option>
+                    <option value="SGD">Singapore Dollar (SGD)</option>
+                </optgroup>
             </select>
             <button id="convertBtn">Convert</button>
             <button id="swapBtn">Swap</button>
@@ -48,7 +86,7 @@
         </div>
     </main>
     <footer>
-        <p><strong>How to use:</strong> Enter a value, select the input and output units, then click "Convert" to see the result. Use "Swap" to switch units. If units are incompatible, it will display "Units not compatible."</p>
+        <p><strong>How to use:</strong> Enter a value, select the input and output units, then click "Convert" to see the result. Use "Swap" to switch units. If units are incompatible, it will display "Units not compatible." Currency conversions use real-time rates.</p>
     </footer>
     <script src="script.js"></script>
 </body>
