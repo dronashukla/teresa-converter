@@ -1,33 +1,26 @@
-// Currency Layer API Setup
-const apiKey = '762e1edc7d1add0e3468d647367c3c3f'; // Your API key
+// CurrencyLayer API Setup
+const apiKey = '762e1edc7d1add0e3468d647367c3c3f'; // Replace with your API key if different
 const currencies = ['USD', 'EUR', 'JPY', 'GBP', 'AUD', 'CAD', 'CHF', 'CNY', 'SEK', 'NZD', 'MXN', 'SGD', 'INR'];
 
 // Cached rates and last fetch time
 let cachedRates = null;
 let lastFetchTime = null;
-const CACHE_DURATION = 10 * 60 * 1000; // 10 minutes in milliseconds
+const CACHE_DURATION = 10 * 60 * 1000; // 10 minutes
 
 // Fetch real-time currency rates
 async function fetchRates() {
-    // Use cached rates if available and not expired
     if (cachedRates && lastFetchTime && (Date.now() - lastFetchTime < CACHE_DURATION)) {
         return cachedRates;
     }
-
     const url = `https://api.currencylayer.com/live?access_key=${apiKey}&currencies=${currencies.join(',')}`;
-    try {
-        const response = await fetch(url);
-        const data = await response.json();
-        if (data.success) {
-            cachedRates = data.quotes;
-            lastFetchTime = Date.now();
-            return cachedRates;
-        } else {
-            throw new Error('API request failed: ' + (data.error?.info || 'Unknown error'));
-        }
-    } catch (error) {
-        console.error('Error fetching rates:', error);
-        throw error;
+    const response = await fetch(url);
+    const data = await response.json();
+    if (data.success) {
+        cachedRates = data.quotes;
+        lastFetchTime = Date.now();
+        return cachedRates;
+    } else {
+        throw new Error('Failed to fetch rates');
     }
 }
 
@@ -61,52 +54,42 @@ function getUnitType(unit) {
 }
 
 // Perform the conversion
-async function convert() {
+function convert() {
     const inputValue = parseFloat(document.getElementById('inputValue').value);
     const inputUnit = document.getElementById('inputUnit').value;
     const outputUnit = document.getElementById('outputUnit').value;
     const resultDiv = document.getElementById('result');
 
-    // Validate inputs
-    if (isNaN(inputValue) || !inputUnit || !outputUnit) {
-        resultDiv.textContent = 'Please fill in all fields with valid values.';
+    // Check if all fields are filled
+    if (!inputValue || !inputUnit || !outputUnit) {
+        resultDiv.textContent = 'Please fill in all fields.';
         return;
     }
 
     const inputType = getUnitType(inputUnit);
     const outputType = getUnitType(outputUnit);
 
-    // Check unit compatibility
+    // Check if units are compatible
     if (inputType !== outputType) {
         resultDiv.textContent = 'Units not compatible.';
         return;
     }
 
-    // Handle currency conversions
     if (inputType === 'currency') {
-        try {
-            const rates = await fetchRates();
-            // Define rates relative to USD (base currency)
-            const rateInput = inputUnit === 'USD' ? 1 : rates['USD' + inputUnit];
-            const rateOutput = outputUnit === 'USD' ? 1 : rates['USD' + outputUnit];
-
-            // Verify rates exist
-            if (!rateInput || !rateOutput) {
+        fetchRates().then(rates => {
+            let rateInput = inputUnit === 'USD' ? 1 : rates['USD' + inputUnit];
+            let rateOutput = outputUnit === 'USD' ? 1 : rates['USD' + outputUnit];
+            if (rateInput && rateOutput) {
+                const convertedValue = (inputValue / rateInput) * rateOutput;
+                resultDiv.textContent = `${inputValue} ${inputUnit} = ${convertedValue.toFixed(4)} ${outputUnit}`;
+            } else {
                 resultDiv.textContent = 'Currency rates not available.';
-                return;
             }
-
-            // Convert: input -> USD -> output
-            const valueInUSD = inputValue / rateInput;
-            const convertedValue = valueInUSD * rateOutput;
-            resultDiv.textContent = `${inputValue} ${inputUnit} = ${convertedValue.toFixed(4)} ${outputUnit}`;
-        } catch (error) {
+        }).catch(error => {
             resultDiv.textContent = 'Error fetching currency rates.';
             console.error(error);
-        }
-    }
-    // Handle temperature conversions
-    else if (inputType === 'temperature') {
+        });
+    } else if (inputType === 'temperature') {
         let convertedValue;
         if (inputUnit === 'celsius' && outputUnit === 'fahrenheit') {
             convertedValue = (inputValue * 9/5) + 32;
@@ -116,16 +99,14 @@ async function convert() {
             convertedValue = inputValue; // Same unit
         }
         resultDiv.textContent = `${inputValue} ${inputUnit} = ${convertedValue.toFixed(2)} ${outputUnit}`;
-    }
-    // Handle weight and distance conversions
-    else {
+    } else {
         const baseValue = inputValue / conversions[inputType][inputUnit];
         const convertedValue = baseValue * conversions[inputType][outputUnit];
         resultDiv.textContent = `${inputValue} ${inputUnit} = ${convertedValue.toFixed(4)} ${outputUnit}`;
     }
 }
 
-// Swap input and output units
+// Swap the input and output units
 function swapUnits() {
     const inputUnit = document.getElementById('inputUnit');
     const outputUnit = document.getElementById('outputUnit');
@@ -134,6 +115,6 @@ function swapUnits() {
     outputUnit.value = temp;
 }
 
-// Add event listeners
+// Add event listeners to buttons
 document.getElementById('convertBtn').addEventListener('click', convert);
 document.getElementById('swapBtn').addEventListener('click', swapUnits);
