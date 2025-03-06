@@ -1,25 +1,28 @@
 body {
-    background: linear-gradient(to right, #FFDAB9, #ADD8E6);
-    font-family: 'Roboto', sans-serif;
+    background: linear-gradient(to right, #001f3f, #003366);
+    font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
 }
 
-.converter {
-    background-color: #FFFFFF;
+.main-box {
+    background-color: #ADD8E6;
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     text-align: center;
-    width: 300px;
-    margin: 50px auto;
+    width: 400px;
 }
 
-.converter-header {
-    background-color: #FFB6C1;
+.header {
+    background-color: #001f3f;
     color: #FFFFFF;
     padding: 10px;
-    border-radius: 10px 10px 0 0;
+    border-radius: 5px 5px 0 0;
     font-size: 18px;
     font-weight: bold;
 }
@@ -54,14 +57,9 @@ input[type="number"] {
     border-radius: 5px;
     padding: 10px;
     font-size: 16px;
-    appearance: none;
-    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="10" height="5"><polygon points="0,0 10,0 5,5" fill="#000000"/></svg>');
-    background-repeat: no-repeat;
-    background-position: right 10px center;
 }
 
 .unit-selection button {
-    margin: 0 10px;
     background: none;
     border: none;
     cursor: pointer;
@@ -76,7 +74,7 @@ button#convertBtn {
     padding: 10px 20px;
     border-radius: 5px;
     cursor: pointer;
-    margin: 10px 5px;
+    margin: 10px 0;
     font-size: 16px;
 }
 
