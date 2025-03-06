@@ -5,14 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Teresa - Unit Converter</title>
     <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <header>
-        <h1>Teresa - Unit Converter</h1>
-    </header>
-    <main>
-        <div class="converter">
-            <input type="number" id="inputValue" placeholder="Enter value">
+    <div class="converter">
+        <div class="converter-header">Teresa - Unit Converter</div>
+        <input type="number" id="inputValue" placeholder="Enter value">
+        <div class="unit-selection">
             <select id="inputUnit">
                 <option value="">Select input unit</option>
                 <optgroup label="Weight">
@@ -47,7 +46,7 @@
                     <option value="INR">Indian Rupee (INR)</option>
                 </optgroup>
             </select>
-            <span>to</span>
+            <button id="swapBtn" title="Swap units">↔️</button>
             <select id="outputUnit">
                 <option value="">Select output unit</option>
                 <optgroup label="Weight">
@@ -82,13 +81,12 @@
                     <option value="INR">Indian Rupee (INR)</option>
                 </optgroup>
             </select>
-            <button id="convertBtn">Convert</button>
-            <button id="swapBtn">Swap</button>
-            <div id="result"></div>
         </div>
-    </main>
+        <button id="convertBtn">Convert</button>
+        <div id="result"></div>
+    </div>
     <footer>
-        <p><strong>How to use:</strong> Enter a value, select the input and output units, then click "Convert" to see the result. Use "Swap" to switch units. If units are incompatible, it will display "Units not compatible." Currency conversions use real-time rates.</p>
+        <p><strong>How to use:</strong> Enter a value, select input and output units, then click "Convert". Use "Swap" to switch units. Currency conversions use real-time rates.</p>
     </footer>
     <script src="script.js"></script>
 </body>
